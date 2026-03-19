@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuel d'Utilisation - TopoCalc</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #10b981;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --info-bg: #eff6ff;
+            --info-text: #1d4ed8;
+            --info-border: #bfdbfe;
+            --astuce-bg: #f0fdf4;
+            --astuce-text: #15803d;
+            --astuce-border: #bbf7d0;
+            --warning-bg: #fffbeb;
+            --warning-text: #b45309;
+            --warning-border: #fde68a;
+            --alert-bg: #fef2f2;
+            --alert-text: #b91c1c;
+            --alert-border: #fecaca;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: white;
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            max-width: 600px;
+            margin-inline: auto;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            gap: 2.5rem;
+        }
+
+        /* Sommaire Statique */
+        aside.toc {
+            flex: 0 0 320px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            align-self: start;
+            position: sticky;
+            top: 2rem;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            color: var(--text-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .toc ul li {
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .toc ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: all 0.2s;
+            display: block;
+            padding: 0.25rem 0;
+        }
+
+        .toc ul li a:hover {
+            color: var(--primary);
+            transform: translateX(2px);
+        }
+
+        .toc ul ul {
+            padding-left: 1rem;
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+            border-left: 1px solid var(--border-color);
+        }
+
+        /* Contenu Principal */
+        main.content {
+            flex: 1;
+            min-width: 0;
+            background: white;
+            padding: 3rem 4rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        }
+
+        article {
+            scroll-margin-top: 2rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.75rem;
+            margin-top: 4rem;
+            scroll-margin-top: 2rem;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            scroll-margin-top: 2rem;
+        }
+
+        h4 {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 2rem;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Box Styles */
+        .box {
+            padding: 1.25rem 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid;
+            background-color: #fff;
+        }
+
+        .box-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .box.important {
+            background-color: var(--info-bg);
+            color: #1e3a8a;
+            border-color: var(--info-border);
+            border-left-color: var(--info-text);
+        }
+
+        .box.astuce {
+            background-color: var(--astuce-bg);
+            color: #14532d;
+            border-color: var(--astuce-border);
+            border-left-color: var(--astuce-text);
+        }
+
+        .box.attention {
+            background-color: var(--warning-bg);
+            color: #78350f;
+            border-color: var(--warning-border);
+            border-left-color: var(--warning-text);
+        }
+
+        .box.alert {
+            background-color: var(--alert-bg);
+            color: #7f1d1d;
+            border-color: var(--alert-border);
+            border-left-color: var(--alert-text);
+        }
+
+        .box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Tables */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        td {
+            font-size: 0.95rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        /* Procedures */
+        .procedure {
+            background: #f8fafc;
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin: 2rem 0;
+        }
+
+        .procedure-title {
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+
+        .procedure ol {
+            padding-left: 1.5rem;
+            margin: 0;
+        }
+
+        .procedure li {
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+
+        .procedure li::marker {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Screenshots Container */
+        .screenshot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: auto;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            color: #64748b;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .screenshot img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #ec4899;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-color: #e0e7ff;
+            color: #4338ca;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+
+            aside.toc {
+                position: static;
+                max-height: none;
+                width: 100%;
+                flex: auto;
+            }
+
+            main.content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>ULTRA MANUEL D'UTILISATION - TopoCalc</h1>
+        <p>Le guide de référence opérationnelle pour la définition d'axes en plan, profils en long, et calculs
+            topographiques.</p>
+    </header>
+
+    <div class="container">
+
+        <!-- SOMMAIRE -->
+        <aside class="toc">
+            <h3>Sommaire</h3>
+            <nav>
+                <ul>
+                    <li><a href="#intro">1. Introduction Générale</a></li>
+                    <li><a href="#interface">2. Prise en Main & Interface</a></li>
+                    <li><a href="#projets">3. Gestion des Axes (Projets)</a>
+                        <ul>
+                            <li><a href="#projets-creer">3.1 Création</a></li>
+                            <li><a href="#projets-import">3.2 Import JSON</a></li>
+                            <li><a href="#projets-export">3.3 Sauvegarde & Export</a></li>
+                            <li><a href="#projets-suppr">3.4 Suppression</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#axe-plan">4. Saisie de l'Axe en Plan (XY)</a></li>
+                    <li><a href="#profil-long">5. Saisie du Profil en Long (Z)</a></li>
+                    <li><a href="#validations">6. Fixation, Aperçu & Continuité</a></li>
+                    <li><a href="#transition-calculs">7. Transition vers les Calculs</a></li>
+                    <li><a href="#calc-pk-deport">8. Calcul PK & Déport (Point XY)</a></li>
+                    <li><a href="#calc-pk-csv">9. Calcul PK & Déport via CSV</a></li>
+                    <li><a href="#calc-xy">10. Implantation (XY depuis PK/Déport)</a></li>
+                    <li><a href="#calc-z">11. Calcul de Z Ligne Rouge (Profil)</a></li>
+                    <li><a href="#calc-ray">12. Calcul de Rayonnement</a></li>
+                    <li><a href="#calc-gis">13. Calcul Gisement & Distance</a></li>
+                    <li><a href="#calc-surface">14. Calcul de Surface</a></li>
+                    <li><a href="#calc-eet">15. Entrées en Terre (Itératif)</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- CONTENU -->
+        <main class="content">
+
+            <section id="intro">
+                <h2>1. Introduction Générale</h2>
+                <p>Bienvenue dans le manuel d'utilisation de <strong>TopoCalc</strong>, l'application mobile de
+                    référence dédiée aux professionnels de la topographie (bureau d'études, projeteurs, ingénieurs et
+                    techniciens géomètres). Ce manuel est conçu pour vous offrir une maîtrise totale, de bout en bout,
+                    des capacités de l'outil.</p>
+                <p>L'application est structurée pour mener à bien des missions d'implantation et de contrôle
+                    géométrique, allant de la conception stricte et validée du projet (Axe & Profil), à son exploitation
+                    terrain via des modules de calcul rigoureux.</p>
+
+                <h4>Domaine d'usage</h4>
+                <ul>
+                    <li><strong>Géométrie Linéaire :</strong> Saisie et calcul des axes en plan (Droites, Cercles,
+                        Clothoïdes de liaison ou raccordement).</li>
+                    <li><strong>Altimétrie :</strong> Saisie de la ligne rouge (Profil en long, pentes, paraboles de
+                        raccordement).</li>
+                    <li><strong>Topographie Opérationnelle :</strong> Relevés, implantations, rayonnement, calculs de
+                        surface, gisements et distances.</li>
+                    <li><strong>Terrassement :</strong> Calcul itératif des entrées en terre (intersection Terrain
+                        Naturel / Talus Théorique).</li>
+                </ul>
+
+                <h4>Logique Globale de l'Application</h4>
+                <div class="box astuce">
+                    <div class="box-title">Cycle de Vie d'un Projet</div>
+                    <p>L'application repose sur un principe séquentiel strict pour garantir l'intégrité des calculs.
+                        L'utilisateur doit suivre ce schéma :<br>
+                        <strong>1. Créer ou Importer un Axe</strong> &#10142; <strong>2. Saisir/Valider l'Axe en
+                            Plan</strong> &#10142; <strong>3. Saisir/Valider le Profil en Long</strong> &#10142;
+                        <strong>4. Exploiter les Modules de Calculs (Topographie/Terrassement).</strong>
+                    </p>
+                </div>
+            </section>
+
+            <section id="interface">
+                <h2>2. Prise en Main Initiale & Interface Générale</h2>
+                <p>L'interface de TopoCalc, de type <em>progressive web app</em>, s'adapte aux environnements mobiles de
+                    chantier. Elle se compose de trois zones principales persistantes.</p>
+
+                <!-- Capture d'écran : Page_Menu.jpg -->
+                <div class="screenshot">
+                    <img src="CAPTURES/Page_Menu.jpg" alt="Vue du Menu Principal"
+                        style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);"><br>
+                    Vue du Menu Principal présentant la grille des modules.
+                </div>
+
+                <h4>Structure de l'Interface</h4>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zone</th>
+                                <th>Description & Comportement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>En-tête (Header)</strong></td>
+                                <td>Toujours visible en haut. Affiche le nom de l'application et, surtout, <strong>le
+                                        projet actuellement actif</strong> (ex: Projet: <em>RN12_Deviation</em>).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zone Principale</strong></td>
+                                <td>Affiche le contenu contextuel : Gestionnaire de projets, formulaire de saisie d'axe,
+                                    ou interface de calcul spécifique.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vignettes Flash</strong></td>
+                                <td>Des bandeaux colorés (rouge/vert) apparaissent brièvement sous l'en-tête pour
+                                    notifier un succès d'enregistrement ou signaler une erreur bloquante.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Barre de Navigation Inférieure</strong></td>
+                                <td>Sert au basculement rapide. Contient 3 accès directs : <br>
+                                    <strong>Menu :</strong> Retour à la grille des outils.<br>
+                                    <strong>Axe/Profil :</strong> Accès direct à l'édition métrique du projet en
+                                    cours.<br>
+                                    <strong>Projets :</strong> Accès au gestionnaire de fichiers.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="box attention">
+                    <div class="box-title">Validation des Formulaires</div>
+                    <p>Dans tous les formulaires TopoCalc, les champs attendent des valeurs <strong>décimales avec
+                            point</strong> (et non virgule). Les angles s'expriment <strong>exclusivement en Grades
+                            (gon)</strong>, et les distances en <strong>Mètres (m)</strong>. L'application bloque le
+                        passage à l'étape suivante en cas de format invalide, en colorant le champ en rouge.</p>
+                </div>
+            </section>
+
+            <section id="projets">
+                <h2>3. Gestion des Axes (Création / Import / Sauvegarde)</h2>
+                <p>La section <strong>"Projets"</strong> est le gestionnaire de fichiers de l'application. Elle permet
+                    d'initialiser le modèle mathématique (Axe & Profil) qui sera ensuite exploité par les modules
+                    topographiques.</p>
+
+                <!-- Capture d'écran : Page_Début.jpg / Page_Import_Axe.jpg -->
+                <div class="screenshot">
+                    <img src="CAPTURES/Page_Début.jpg" alt="Page Début"
+                        style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);"><br>
+                    Vue du Gestionnaire de Projets.
+                </div>
+
+                <h3 id="projets-creer">3.1 Création d'un Nouvel Axe</h3>
+                <p>Il s'agit de la première action que l'utilisateur doit effectuer pour commencer un chantier.</p>
+                <div class="procedure">
+                    <div class="procedure-title">Procédure Pas à Pas</div>
+                    <ol>
+                        <li>Ouvrez le gestionnaire via le bouton <strong>Projets</strong> (Nav inférieure).</li>
+                        <li>Dans le champ <em>"Nom du projet"</em>, saisissez un identifiant sans caractères spéciaux ni
+                            espaces complexes.</li>
+                        <li>Appuyez sur le bouton <strong>Créer</strong>.</li>
+                        <li>L'application bascule automatiquement ce projet comme <em>"Projet Actif"</em> (visible dans
+                            l'en-tête). L'axe et le profil de ce nouveau projet sont initialement strictement vides.
+                        </li>
+                    </ol>
+                </div>
+
+                <h3 id="projets-import">3.2 Import d'un Axe Existant</h3>
+                <p>L'application permet d'importer une géométrie complète générée au bureau ou partagée par un collègue.
+                </p>
+                <ul>
+                    <li><strong>Format Supporté :</strong> Fichier <code>.json</code> spécifique TopoCalc gérant la
+                        succession d'éléments.</li>
+                    <li><strong>Procédure Exacte :</strong> Cliquez sur le bouton pointillé <strong>"Importer un fichier
+                            JSON"</strong>. Votre explorateur de fichiers s'ouvrira pour sélectionner le fichier sur le
+                        stockage de l'appareil sécurisé (plugin de fichier système).</li>
+                    <li><strong>Vigilance :</strong> Un import écrase en mémoire l'axe en cours s'il porte le même nom.
+                        Après un import, l'application recalcule dans l'ombre les éléments pour valider la continuité
+                        (tangences, jonctions). L'utilisateur doit vérifier l'onglet "Axe/Profil" pour confirmer sa
+                        conformité.</li>
+                </ul>
+
+                <h3 id="projets-export">3.3 Enregistrement et Sauvegarde</h3>
+                <p>L'application TopoCalc utilise une <strong>sauvegarde automatique dans le cache local de
+                        l'appareil</strong> (LocalStorage) à chaque manipulation (ajout, suppression d'un élément
+                    d'axe).<br>
+                    Toutefois, pour externaliser la donnée (Partage/Archivage), l'utilisateur doit formellement
+                    <strong>Exporter</strong> le projet.
+                </p>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th>Action</th>
+                            <th>Résultat Opérationnel</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Sauvegarde Active (Auto)</strong></td>
+                            <td>Conserve le projet instantanément. Résiste au redémarrage de l'application en gardant
+                                l'Axe intact en mémoire.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bouton Exporter (Icône Téléchargement)</strong></td>
+                            <td>Génère un fichier <code>.json</code> réel via l'explorateur Android (Filesystem/Share),
+                                plaçable dans les <em>Documents</em> ou envoyé par Email. Action vitale à la fin de la
+                                modélisation à titre de sauvegarde froide.</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3 id="projets-suppr">3.4 Suppression d'un Axe</h3>
+                <p>La suppression s'effectue via l'icône de Corbeille associée au projet dans la liste. <strong>L'impact
+                        est immédiat et irréversible</strong>. L'application exige une confirmation via une boîte de
+                    dialogue d'Alerte. Si le projet supprimé était le projet actif, l'application vide la mémoire
+                    (L'en-tête affichera "Projet: Aucun"). Sans projet actif, les modules de calcul de PK/Déport ou Z
+                    produiront des erreurs.</p>
+            </section>
+
+            <section id="axe-plan">
+                <h2>4. Saisie de l'Axe en Plan (Alignement Horizontal)</h2>
+                <p>C'est le cœur géométrique du logiciel. L'axe en plan s'effectue via l'onglet <strong>Axe en
+                        Plan</strong> du menu principal <strong>Axe/Profil</strong>.</p>
+                <p>L'Axe en plan est composé de tronçons appelés "Éléments". Il est obligatoire de respecter la chaîne
+                    de continuité. En dehors de l'élément nº1 (Point Base), <strong>chaque nouvel élément s'articule
+                        obligatoirement sur la fin géométrique (Coordonnées et Gisement tangent) de l'élément
+                        précédent</strong>.</p>
+
+                <!-- Capture d'écran : Apge_Axe_En_Plan.jpg / Apge_Axe_En_Plan_Elements.jpg -->
+                <div class="screenshot">
+                    <img src="CAPTURES/Apge_Axe_En_Plan.jpg" alt="Axe en Plan"
+                        style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);"><br>
+                    Vue de la section Axe en Plan.
+                </div>
+
+                <h4>Logique et Ordre de Saisie Recommandé</h4>
+                <div class="procedure">
+                    <div class="procedure-title">Méthodologie Stricte :</div>
+                    <ol>
+                        <li>Identifier dans les plans BAEL/Dossier d'Exécution routière le PK de début et les
+                            coordonnées initiales XY.</li>
+                        <li>Saisir ces coordonnées fondamentales dans le bloc <strong>Point Statique / Coordonnées
+                                Modèle</strong>.</li>
+                        <li>Sélectionner un type d'élément géométrique dans la liste déroulante (Ligne, Arc,
+                            Clothoïde...).</li>
+                        <li>Renseigner les paramètres intrinsèques de cet élément (Longueurs, Rayons...). Le PK de
+                            départ de l'élément actuel sera <strong>automatiquement géré et déduit</strong> par
+                            TopoCalc.</li>
+                        <li>Valider l'élément (bouton <strong>Ajouter Élément</strong>).</li>
+                        <li>Répéter la sélection du type d'élément pour le tronçon suivant.</li>
+                    </ol>
+                </div>
+
+                <div class="box alert">
+                    <div class="box-title">Cas du Gisement de Départ</div>
+                    <p>Pour l'Elément n°1, le Gisement Tangente Initial doit être saisi manuellement !<br>Pour l'Elément
+                        n°2, 3, 4..., l'application verrouille et occulte la saisie du Gisement Tangente de Départ, car
+                        elle impose la loi de continuité géométrique pure du tracé précédent.</p>
+                </div>
+
+                <h4>Détail des Éléments Géométriques Disponibles</h4>
+
+                <p>L'application TopoCalc propose une très grande richesse d'éléments. Voici les paramètres exacts
+                    attendus par l'application pour chaque type, ainsi que la convention des signes implémentée :</p>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type d'Élément</th>
+                                <th>Définition Métier</th>
+                                <th>Paramètres d'Entrée Obligatoires</th>
+                                <th>Signes & Précisions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="tag">LIGNE</span></td>
+                                <td>Alignement Droit.</td>
+                                <td>- Longueur (m)<br>- <em>Gis. Départ (Uniquement si Élément 1)</em></td>
+                                <td>La longueur est toujours absolue (positive).</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag">ARC</span></td>
+                                <td>Arc Circulaire. Courbure pure.</td>
+                                <td>- Rayon (m)<br>- Longueur développée (m)</td>
+                                <td><strong>Rayon Positif (+)</strong> : Courbe à Droite.<br><strong>Rayon Négatif
+                                        (-)</strong> : Courbe à Gauche.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag">CLOTHO - D>C</span></td>
+                                <td>Clothoïde standard de transition (Droite vers Cercle).</td>
+                                <td>- Paramètre A<br>- Longueur développée (m)<br>- Rayon d'arrivée (Optionnel, lié à A
+                                    et L)</td>
+                                <td><strong>Paramètre A Positif (+) :</strong> Tourne à Droite.<br><strong>Paramètre A
+                                        Négatif (-) :</strong> Tourne à Gauche.<br>L'application gère la formule
+                                    intrinsèque <em>R = A² / L</em>.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag">CLOTHO INVERSE</span></td>
+                                <td>Clothoïde de sortie de transition (Cercle vers Droite). Rayon de départ fixe, rayon
+                                    de fin infini.</td>
+                                <td>- X, Y : Point de Fin Tangente (Intersection alignement)<br>- Paramètre A1<br>-
+                                    Rayon R1 (Départ)</td>
+                                <td>L'application va itérativement déduire la géométrie pour projeter du cercle jusqu'à
+                                    la tangente ciblée via le point spécifié. Le sens dépend du signe de A1/R1.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag">LIAISON S (OVE)</span></td>
+                                <td>Raccordement complexe dit de "Sommet" reliant deux éléments par un faisceau de 2
+                                    Clothoïdes jointes (Point d'Inflexion ou changement de concavité).</td>
+                                <td>- X, Y de l'Intersection (IP)<br>- Paramètre A1, R1 (Branche entrante)<br>-
+                                    Paramètre A2, R2 (Branche sortante)</td>
+                                <td>Module de haute ingénierie. TopoCalc identifie le raccordement en "S" ou en "Ove" en
+                                    fonction des combinaisons de signes (+ - ou + +) fournies pour les paramètres R1/R2.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="box astuce">
+                    <div class="box-title">Valeurs Calculées Automatiquement</div>
+                    <p>Au moment de l'encart d'un élément, l'application exécute son moteur mathématique. Elle restitue
+                        et enregistre dans son instance locale : <strong>le PK de fin, le X/Y absolu de fin, et le
+                            Gisement asymptotique de sortie de l'élément</strong>. Vous pouvez consulter les coordonnées
+                        calculées de chaque tronçon en développant la liste en-dessous du formulaire.</p>
+                </div>
+
+            </section>
+
+            <section id="profil-long">
+                <h2>5. Saisie du Profil en Long (Alignement Vertical)</h2>
+                <p>La dénivellation de votre tracé est gérée par l'onglet <strong>Profil en Long</strong>. Cette
+                    modélisation s'effectue en parallèle de l'Axe En Plan. Les relations horizontales / verticales se
+                    superposent via l'Appellation Commune de <strong>chaînage (PK)</strong>.</p>
+
+                <!-- Capture d'écran : Apge_Profil_En_Long_Edit1.jpg / Apge_Profil_En_Long_Elements.jpg -->
+                <div class="screenshot">
+                    <img src="CAPTURES/Apge_Profil_En_Long_Elements.jpg" alt="Profil en Long"
+                        style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);"><br>
+                    Vue de la section Profil en Long et liste de ses éléments.
+                </div>
+
+                <h4>Le principe du Profil en Long et Point Zéro</h4>
+                <p>Comme pour le plan, le profil doit commencer par un élément fondateur : <strong>le PK de départ
+                        altimétrique et sa Cote Projet Z absolue (m)</strong>. C'est l'étage de base.</p>
+
+                <h4>Types de segments verticaux</h4>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type Vertical</th>
+                                <th>Paramètres à renseigner</th>
+                                <th>Interprétation de TopoCalc</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ligne (Pente constante)</strong></td>
+                                <td>- Pente<br>- Longueur de l'élément (m)</td>
+                                <td><strong>Pente en Notation Décimale !</strong><br>Pour 3% de pente montante, saisir
+                                    <code>0.03</code>.<br>Pour 2.5% de pente descendante, saisir <code>-0.025</code>.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Raccordement Parabolique</strong></td>
+                                <td>- Rayon Vertical (Rv)<br>- Longueur sur l'horizontale (m)</td>
+                                <td>Concerne les angles rentrants ou saillants.<br><strong>Rv Positif (+) :</strong>
+                                    Concavité orientée vers le haut (Point bas, cuvette).<br><strong>Rv Négatif (-)
+                                        :</strong> Concavité orientée vers le bas (Point haut, crête).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="box attention">
+                    <div class="box-title">Modifications et points de rupture</div>
+                    <p>Contrairement au plan qui exige une tangence absolue, l'utilisateur a l'interface "Édition
+                        (Stylo)" dans la liste pour forcer occasionnellement un élément. Cela <strong>rompra
+                            explicitement la chaîne de continuité du Profil</strong> et créera des sauts, que le
+                        contrôle de continuité devra vérifier et potentiellement corriger (via interpolation).</p>
+                </div>
+
+            </section>
+
+            <section id="validations">
+                <h2>6. Fixation, Aperçu & Contrôle de Continuité</h2>
+                <p>Cette étape transitoire est la <strong>cléf de voûte</strong> de la sécurité opérationnelle de
+                    TopoCalc. Un axe mal entré produit des calculs d'implantation aberrants.</p>
+
+                <h3 id="valid-apercu">6.1 L'Aperçu Graphique (Preview)</h3>
+                <p>Une fois les éléments renseignés, les boutons <strong>"Aperçu"</strong> (Plan) et <strong>"Aperçu
+                        Profil"</strong> permettent une validation visuelle extrêmement rapide sur Canvas.<br>
+                    <strong>Que doit repérer l'utilisateur ?</strong> Les rebroussements. Un changement brutal de
+                    direction entre deux points, ou une "trompette" (spirale qui boucle), trahissent toujours une erreur
+                    de signe (+ au lieu de -) dans le rayon ou le paramètre A d'une clothoïde.
+                </p>
+
+                <h3 id="valid-fixation">6.2 La Fixation et l'Édition (Mode Matrice)</h3>
+                <p>TopoCalc permet de modifier un élément (Icône Stylo). La règle métier impose : <br>
+                    <em>"Une erreur millimétrique sur un départ induit un glissement centimétrique à l'arrivée (effet
+                        Bras de levier)"</em>. <br>
+                    La fonction d'édition affiche une option <strong>Fixer</strong> / <strong>Mode Matrice</strong>.
+                    Lorsqu'il est utilisé, l'application gèle (fixe) volontairement le point de départ de cet élément
+                    pour forcer une correspondance stricte avec le logiciel de conception routière lourd qui a généré
+                    l'Axe. Les tronçons ne "flottent" plus librement au grès de la propagation d'erreurs en cascade.
+                </p>
+
+                <h3 id="valid-recalcul">6.3 Calcul et Contrôle de Continuité Globale</h3>
+                <div class="box important">
+                    <div class="box-title">Bouton : Recalculer la Continuité (L'Axe / Profil)</div>
+                    <p>Ce bouton agit comme un validateur universel.</p>
+                </div>
+                <p><strong>Ce que fait le contrôle :</strong></p>
+                <ul>
+                    <li>L'application balaye du PK 0 jusqu'à la Règle Fin.</li>
+                    <li>Elle réapplique scrupuleusement les tangences (le Gisement de fin d'élément N s'injecte en
+                        Gisement tangentiel de DÉPART de l'élément N+1).</li>
+                    <li>Elle écrase les X/Y/Z successifs calculés.</li>
+                </ul>
+                <p><strong>Si le contrôle rencontre un échec / une erreur d'interpolation :</strong> <br>
+                    Un avertissement clair indique qu'un lien S ou Inverse n'a pas pu converger mathématiquement vers
+                    son asymptote. <br>
+                    L'utilisateur devra impérativement corriger ses paramètres <em>R1, R2, A1, A2</em> qui définissent
+                    la condition impossible de courbure dans les éléments affectés.</p>
+                <p>L'Axe est exploitable seulement lorsque la chaîne n'affiche plus d'exceptions mathématiques.</p>
+            </section>
+
+            <section id="transition-calculs">
+                <h2>7. Passage à l'Utilisation Opérationnelle de l'Application</h2>
+                <p>Une fois l'Axe validé, <strong>il s'agit dès lors de la "Vérité Terrain" dans TopoCalc</strong>.
+                    Aucun module de projection (surface de chaussée, déblai) ne peut fonctionner si les onglets "Axe en
+                    Plan" et "Profil en Long" n'abritent pas la donnée.<br> Vous pouvez dès lors rejoindre le
+                    <strong>Menu</strong> (via la barre inférieure). La section suivante décrit les modules du tableau
+                    de bord d’ingénierie qui vont interroger cet Axe.
+                </p>
+            </section>
+
+            <section id="calc-pk-deport">
+                <h2>8. Calcul de PK et Déport (Point connu en XY)</h2>
+                <p><strong>Objectif :</strong> Répondre à la question Topo de base : <em>"Où se trouve géométriquement
+                        mon jalon actuel sur le terrain par rapport au plan théorique de l'Axe ?"</em>.</p>
+                <!-- Capture d'écran : Calcul_PK_Déport.jpg -->
+                <div class="screenshot">
+                    <img src="CAPTURES/Calcul_PK_Déport.jpg" alt="Calcul PK Déport"
+                        style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);"><br>
+                    Vue du module PK & Déport.
+                </div>
+
+                <p><strong>Données d'Entrée :</strong></p>
+                <ul>
+                    <li>Les coordonnées effectives du récepteur GPS / Station (X , Y) en notation décimale métrique.
+                    </li>
+                </ul>
+
+                <p><strong>Exécution par l’application (Projections Itératives et Orthogonales) :</strong></p>
+                <ul>
+                    <li>Le moteur balaie chaque "locus géométrique" de l'Axe (droites, arcs, clothoïdes via intégration
+                        Simpson).</li>
+                    <li>Il trouve le point de l'axe où la perpendiculaire traverse votre coordonnée X,Y.</li>
+                </ul>
+
+                <p><strong>Résultats Affichés (Affichage direct) :</strong></p>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th>Information</th>
+                            <th>Définition Exacte</th>
+                        </tr>
+                        <tr>
+                            <td><strong>PK (Abscisse curviligne)</strong></td>
+                            <td>La distance développée depuis le début du projet jusqu'au point de projection sur l'axe.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Déport</strong></td>
+                            <td>La distance perpendiculaire, au millimètre près, qui sépare la canne GNSS de la fibre
+                                neutre de l'axe.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Convention de Signe du Déport</strong></td>
+                            <td><strong>Positif (+)</strong> : Le point se trouve à <strong>DROITE</strong> du sens de
+                                marche du PK.<br><strong>Négatif (-)</strong> : Le point se trouve à
+                                <strong>GAUCHE</strong> de l'axe de marche.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <p><strong>Cas d'Erreur :</strong> <br>Si le point XY est situé bien avant le DÉBUT strict de l'axe ou
+                    après sa FIN, l'application affichera un message d'extrapolation mathématique impraticable, en
+                    rejetant la projection ("<em>Projection Hors Emprise de l'Axe Validé</em>").</p>
+            </section>
+
+            <section id="calc-pk-csv">
+                <h2>9. Calcul de PK et Déport à partir d'un fichier CSV (Processus en Masse)</h2>
+                <p>Ce module s'adresse aux opérateurs qui doivent projeter un levé de 200 à 2000 points d'un coup (ex:
+                    Validation du modèle de coffrage fini).</p>
+
+                <div class="procedure">
+                    <div class="procedure-title">Format Strict Attendu du Fichier d'Importation CSV</div>
+                    <ol>
+                        <li>L'application s'attend à un tableau séparé par le séparateur Point-Virgule <code>;</code> ou
+                            la virgule standard.</li>
+                        <li>Les <strong>trois premières colonnes obligatoires</strong> dans cet ordre sont :<br>
+                            <code>Matricule(ID) ; Coordonnée_X ; Coordonnée_Y</code>
+                        </li>
+                        <li>Les colonnes supplémentaires (Z, Altitude, Code, Remarque...) sur les lignes seront
+                            <strong>conservées et ignorées</strong> lors du processus lourd.
+                        </li>
+                    </ol>
+                </div>
+
+                <p><strong>Procédure par Étapes :</strong></p>
+                <ul>
+                    <li>Cliquer sur le bouton <strong>"Importer CSV"</strong> spécifique au menu "PK & Déport".</li>
+                    <li>Sélectionner un listing <code>levé.csv</code>.</li>
+                    <li>L'application lance une barre de traitement rapide.</li>
+                    <li><strong>Injection et Restitution :</strong> Les résultats ne sont pas simplement affichés à
+                        l'écran. <strong>L'application télécharge automatiquement</strong> un nouveau fichier enrichi
+                        (nommé typiquement <code>resultat_pk_deport_XYZ.csv</code>) dans vos <strong>Documents</strong>.
+                    </li>
+                </ul>
+                <div class="box astuce">
+                    <div class="box-title">Colonnes Autogénérées</div>
+                    <p>Le fichier Excel / CSV final restitué contiendra toutes vos données, <strong>plus deux colonnes
+                            inédites apposées à la toute fin du tableau</strong> : le <code>PK_calculé</code> et le
+                        <code>DEPORT_calculé</code>. La restitution reste pure, prête à s'insérer sur Covadis pour une
+                        validation quantifiée.
+                    </p>
+                </div>
+            </section>
+
+            <section id="calc-xy">
+                <h2>10. Implantation (Calcul du XY d'un point sur axe via son PK et Déport)</h2>
+                <p><strong>Objectif :</strong> Vous avez un listing d'exécution bureau stipulant : <em>"Recherche de
+                        piquet au PK 1450.00 avec un déport de +2.50m (Bordure droite)"</em>. Vous voulez le transformer
+                    en coordonnées réelles XY pour l'introduire dans le carnet station.</p>
+
+                <p><strong>Données d'Entrée :</strong></p>
+                <ul>
+                    <li>Le <strong>PK métrique précis</strong> sur l'axe.</li>
+                    <li>Le <strong>Déport métrique souhaité</strong> (Taper <code>0</code> pour un repère posé pile sur
+                        la ligne d'axe. Taper avec un signe négatif <code>-</code> pour s'éloigner côté gauche de la
+                        chaussée).</li>
+                </ul>
+
+                <p><strong>Comportement Conditionnel :</strong></p>
+                <ul>
+                    <li>Si PK hors emprise absolue : l'algorithme ne rend rien (le tracé mathématique ne peut justifier
+                        la tangente d'éléments non modelés).</li>
+                </ul>
+
+                <p><strong>Résultats produits :</strong> L'écran affichera la <strong>Coordonnée X</strong> et
+                    <strong>Coordonnée Y</strong> d'implantation. Ces valeurs se saisissent ensuite dans la Canne /
+                    Station Totale pour un piquetage immédiat.
+                </p>
+
+                <p><em>(La méthode CSV de masse fonctionne symétriquement : Insérer Fichier avec
+                        <code>ID ; PK ; DEPORT</code> &#10142; Récupérer fichier avec les deux dernières colonnes
+                        <code>X_calculé ; Y_calculé</code> créées).</em></p>
+            </section>
+
+            <section id="calc-z">
+                <h2>11. Calcul de Z sur Profil à partir du PK (Z Projet Ligne Rouge)</h2>
+                <p>Ce module sert à interroger instantanément la côte altimétrique définitive du corps de chaussée
+                    géométrique.</p>
+
+                <!-- Capture d'écran : Calcul_Z_sur_Profil.jpg -->
+                <div class="screenshot">
+                    <img src="CAPTURES/Calcul_Z_sur_Profil.jpg" alt="Calcul Z Profil"
+                        style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);"><br>
+                    Vue du calcul Z sur Profil.
+                </div>
+
+                <p><strong>Prérequis Impératif :</strong> L'outil ne fonctionnera que si le <strong>Profil en
+                        Long</strong> a été renseigné convenablement dans le Projet. L'utilisateur doit s'assurer que le
+                    PK d'entrée est englobé par la longueur du profil défini.</p>
+
+                <p><strong>Saisie :</strong> L'abscisse (PK) ciblée.</p>
+
+                <p><strong>Données restituées (Calcul complet) :</strong></p>
+                <ul>
+                    <li><strong>Z Projet (Cote Rouge Altitude) :</strong> Calculée à partir des paraboles et des droites
+                        constantes de déclivité.</li>
+                    <li><strong>Type d’élément vertical impliqué :</strong> Information rassurant l’opérateur qu’il se
+                        situe dans une <em>Pente Linéaire</em> ou isolé dans un <em>Raccordement en Cuvette</em>.</li>
+                    <li><strong>Pente Instantanée Locale (%) :</strong> Crucial. La pente tangentielle à cet exact PK.
+                        Si vous projetez sur une Ligne, cette valeur sera constante. Si vous êtes dans un raccordement
+                        complexe, elle sera spécifique et continuellement variable pour ce point, indispensable pour
+                        caler la grille d'un draineur.</li>
+                </ul>
+            </section>
+
+            <section id="calc-ray">
+                <h2>12. Calcul de Rayonnement Simple</h2>
+                <p>Module Topo de base décorrélé de l'Axe. Utile pour projeter rapidement l'implantation d'un angle de
+                    bâtiment, regard, ou puits en levé direct polaire.</p>
+
+                <!-- Capture d'écran : Calcul_Rayonnement_simple.jpg -->
+                <div class="screenshot">
+                    <img src="CAPTURES/Calcul_Rayonnement_simple.jpg" alt="Rayonnement"
+                        style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);"><br>
+                    Vue du Rayonnement.
+                </div>
+
+                <p><strong>Données à introduire :</strong></p>
+                <ul>
+                    <li><strong>Station Mère / Point de Départ :</strong> Coordonnées X_Dep et Y_Dep absolues
+                        stationnées.</li>
+                    <li><strong>Mouvement Vecteur :</strong>
+                        <ul>
+                            <li>Gisement visé (0.000 à 400.000 gon - Grades). Le Nord géographique strict.</li>
+                            <li>Distance horizontale (Dh métrique).</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p><strong>L'outil garantit :</strong> Une application pure Math-Trigo
+                    <code>(X + Dist*Sin(Gisement) ; Y + Dist*Cos(Gisement))</code>. Le résultat fourni est une pair de
+                    Coordonnées X_Cible, Y_Cible inamovibles.
+                </p>
+
+                <div class="box attention">
+                    <div class="box-title">Précautions avec les unités</div>
+                    <p>L'erreur la plus vaste des non-habitués est l'usage du Degré Sexagésimal. Referez-vous
+                        impérativement aux <strong>Grades (Gon)</strong> et confirmez la compensation d’origine (V0) de
+                        votre tachéomètre !</p>
+                </div>
+            </section>
+
+            <section id="calc-gis">
+                <h2>13. Calcul de Gisement et Distance (V0 d'orientation / Dis-Horiz)</h2>
+                <p>C'est l'inverse du rayonnement. Répond à la question : <em>"Dans quelle direction et à quelle
+                        distance se trouve le Répère 2 par rapport au Repère 1 fixés ?"</em>.</p>
+
+                <!-- Capture d'écran : Calcul_GIS_DIS.jpg -->
+                <div class="screenshot">
+                    <img src="CAPTURES/Calcul_GIS_DIS.jpg" alt="Gisement Distance"
+                        style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);"><br>
+                    Vue du module Gisement Distance.
+                </div>
+
+                <p><strong>Saisie Stricte :</strong></p>
+                <ul>
+                    <li>X1, Y1 (Départ) et X2, Y2 (Arrivée Ciblée).</li>
+                </ul>
+
+                <p><strong>Résultats (L'algorithme analyse les quadrants en arrière-plan et gère l'ATAN2) :</strong></p>
+                <ul>
+                    <li><strong>Forme Angulaire :</strong> Gisement Topographique propre, converti au système centésimal
+                        (Gon). Informe de la direction précise.</li>
+                    <li><strong>Distance :</strong> Renvoie la distance horizontale algébrique entre les deux repères,
+                        qui doit correspondre en théorie terrain aux indications d'un ruban chaîné.</li>
+                    <li><strong>Cas limites (Confondus) :</strong> Si X1,Y1 = X2,Y2, l'application ne produira pas
+                        d'erreur critique de plantage Javascript mais refusera un gisement "0 absolu irréel" ; la
+                        distance sera notifiée comme 0m. L'opérateur peut vérifier les bornes.</li>
+                </ul>
+            </section>
+
+            <section id="calc-surface">
+                <h2>14. Calcul de Surface (Points et Polygones)</h2>
+                <p>Une calculatrice graphique d'emprise intégrée, essentielle pour les attachés de travaux qui valident
+                    l'arase, un fond de fouille, un polygone d'expropriation, ou la surface d'un remblai appliqué.</p>
+
+                <!-- Capture d'écran : Calcul_Surface.jpg -->
+                <div class="screenshot">
+                    <img src="CAPTURES/Calcul_Surface.jpg" alt="Surface"
+                        style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);"><br>
+                    Vue du module Calcul de Surface et Canvas géométrique.
+                </div>
+
+                <p><strong>Le principe d'utilisation et ordre d'impact :</strong></p>
+                <p>L'application calcule de manière vectorielle via la méthode universelle de Gauss (Aire d'un polygone
+                    irrégulier). <strong>Toute saisie de points doit former un contour fermé !</strong> L'ordre
+                    d'insertion des bornes affecte directement le sens de boucle. Un périmètre dessiné "en étoile" ou
+                    croisé faussera lamentablement les Mètres-Carrés.</p>
+
+                <p><strong>Méthodes de Saisie :</strong></p>
+                <ul>
+                    <li><strong>Manuel avec Contrôle Canvas :</strong>
+                        <ol>
+                            <li>Tapez un ID (ex: Borne 'A'), son X, son Y. Cliquez sur [+] Ajouter.</li>
+                            <li>La borne rejoint la liste sous-jacente. L'écran de visualisation du haut (le <em>Canvas
+                                    Interactive View</em>) <strong>dessine le point et le relie via filet</strong> en
+                                temps réel.</li>
+                            <li>Vous remarquez visuellement le périmètre de la forme se déployer en mode polaire. Le
+                                système reboucle toujours la figure au premier point.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Masse Import CSV/TXT :</strong> Idéal pour les fichiers générés depuis une série de
+                        polygones mesurés. Appuyez sur le bouton gris <strong>Import CSV/TXT</strong> et la zone
+                        d'édition intègre la liste instantanément (les points doivent y étre structurés de façon
+                        adéquate <code>ID ; X ; Y</code> en suivant la bordure de périmètre dans l'ordre chronologique).
+                    </li>
+                </ul>
+
+                <h4>Ajustement du Contour et Manipulation Graphique :</h4>
+                <p><strong>L'utilisateur se trompe de point ?</strong> Aucun problème. La liste en dessous garantit une
+                    gestion granulaire :<br>
+                    Vous avez la possibilité d'utiliser les flèches haut/bas au sein des lignes de point <strong>pour
+                        réordonner une borne et rectifier le croisement (les papillons) de contour visuel en
+                        Canvas</strong>.<br>
+                    Vous pouvez <strong>supprimer</strong> un point ou appuyer sur <code>Tout Effacer</code> bas de
+                    page.</p>
+
+                <div class="box astuce">
+                    <div class="box-title">Validation des Résultats</div>
+                    <p>Appuyez sur le bouton vert <strong>Calculer Surface</strong>. L'interface affiche une carte
+                        émeraude résumée comprenant <strong>La valeur en Mètre Carré (m²)</strong> absolue haute
+                        précision, et immédiatement convertie dans l'usuelle terminologie agricole/expropriation
+                        <strong>en Hectare (ha)</strong>.
+                    </p>
+                </div>
+            </section>
+
+            <section id="calc-eet">
+                <h2>15. Calcul Itératif des Entrées en Terre (Intersection TN / Projet)</h2>
+                <p>C'est l'outil technique ultime et le plus orienté métier pour modélisation terraforming du manuel. Un
+                    terrassier ou chef de section routière doit chercher au ruban, ou à la canne sur site, "à quel
+                    endroit précis de l'arête montagneuse, ma pelle sur chenille doit creuser son talus vers la route ?"
+                </p>
+
+                <!-- Capture d'écran : Calcul_EET_*.jpg -->
+                <div class="screenshot">
+                    <img src="CAPTURES/Calcul_EET_1.jpg" alt="EET_1"
+                        style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+                    <img src="CAPTURES/Calcul_EET_2.jpg" alt="EET_2"
+                        style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+                    <img src="CAPTURES/Calcul_EET_3.jpg" alt="EET_3"
+                        style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+                    <img src="CAPTURES/Calcul_EET_4.jpg" alt="EET_4"
+                        style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+                    <img src="CAPTURES/Calcul_EET_5.jpg" alt="EET_5"
+                        style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+
+                    Vue de la section Entrées en Terre, le configurateur Pivot puis le cycle interactif.
+                </div>
+
+                <h3 id="calc-eet-obj">15.1 Objectif Fondamental</h3>
+                <p>L'application va croiser continuellement deux modèles 3D : la théorie géométrique absolue (Axe en
+                    Plan + Profil + Talus rigide de 1/1 ou 3/2) et la dure réalité de terrain chaotique sans forme
+                    mathématique évidente (Z Terrain Naturel). Ce croisement nécessite un <strong>processus Itératif de
+                        convergence par sondages successifs</strong>.</p>
+
+                <h3 id="calc-eet-base">15.2 Définition des Données de Base Attendues</h3>
+                <p>Dans le formulaire de Configuration (Étape 1 et 2), l'opérateur "assure les bases" du profil travers
+                    qu'il veut générer. Les données initiales obligatoires sont :</p>
+                <ul>
+                    <li><strong>Le PK de l'Axe :</strong> À quelle section se place-t-on (chaînage).</li>
+                    <li><strong>Le Côté d'action :</strong> Droite ou Gauche (modifie le signe intrinsèque de la
+                        progression positive/négative du déport).</li>
+                    <li><strong>Le Déport Pivot Initial :</strong> La distance bord axe vers le Point de Départ Pivot
+                        (Bord de plate-forme, trottoir, banquette chaussée avant talutage). <em>Attention: Cette
+                            distance s'exprime toujours en Absolu sans signe !</em></li>
+                    <li><strong>Le Z Projet Pivot :</strong> Quelle est l'altitude officielle sur le projet à ce point
+                        'Déport Pivot' mentionné.</li>
+                    <li><strong>Nature de l'Ouvrage (Talus) :</strong> Un <strong>REMBLAI</strong> (descente vers le TN
+                        plus bas). Ou un <strong>DÉBLAI</strong> (fouille vers un TN qui domine la route).</li>
+                    <li><strong>La Pente imposée :</strong> Ratio Horizontale/Verticale (ex : pour 3/2, insérer
+                        <code>1.5</code>. Pour 1/1 insérer <code>1.0</code>).
+                    </li>
+                </ul>
+
+                <h3 id="calc-eet-process">15.3 Processus Opérateur et Réponse Itérative Pas-à-Pas</h3>
+                <p>L'application TopoCalc bascule en mode exclusif <strong>Zone d'Apprentissage (Boucle
+                        d'itération)</strong>.</p>
+
+                <div class="procedure">
+                    <div class="procedure-title">Itération en Direct sur le Chantier :</div>
+                    <ol>
+                        <li>Une fois la configuration démarrée, <strong>TopoCalc propose une Cible Itération 0
+                                théorisée</strong> (Un Déport initial, et les coordonnées de navigation au sol (X Cible,
+                            Y Cible). Vous disposez de la première zone estimée de l'entrée en terre.</li>
+                        <li><strong>Action Topo :</strong> Marchez vers le (X,Y). Prenez une mesure de
+                            l'<strong>Altitude Terrain (ZTN)</strong> à cette position dans l'herbe ou sur la colline.
+                        </li>
+                        <li><strong>Réaction :</strong> L'Application vous demandera ce <em>Z Terrain (ZTN) Mesuré
+                                !</em> Saisissez ce chiffre et appuyez sur <kbd>Appliquer ZTN & Itérer</kbd>.</li>
+                        <li><strong>Algorithme :</strong> L'application intercepte cet altitude, la compare au gabarit
+                            Pente vs Z-Pivot formulé. L'intelligence applicative va alors analyser l'écart de distance
+                            et statuer <em>"Le talus s'écrase plus loin dans la colline"</em> ou <em>"le talus finit
+                                plus court"</em>.</li>
+                        <li><strong>Convergence :</strong> Immédiatement, un bloc consigne apparait. L'application donne
+                            l'ordre visuel coloré : <br><strong>"Éloignez-vous de la Route !"</strong> avec une
+                            "Nouvelle Distance d'ajustement".<br> Ou <strong>"Rapprochez-vous de l'Axe !"</strong>.
+                            TopoCalc vous donne le nouveau couple X,Y à aller sonder.</li>
+                        <li>Répétez la ligne 2 et 3 tant que la distance d'écart proposée est large.</li>
+                    </ol>
+                </div>
+
+                <h3 id="calc-eet-convergence">15.4 Le Critère de Convergence de Fin</h3>
+                <p>Comment l'utilisateur sait-il que le travail est accompli ?</p>
+                <ul>
+                    <li>L'ajustement qui était de "5 mètres, puis 1 mètre, puis 20 centimètres" va fondre sous les
+                        sondages d'algorithme.</li>
+                    <li>L'application surveille rigoureusement le <code>Delta de Déport &lt; 2 cm</code>.</li>
+                    <li>Une fois cette micro tolérance (2 centimètres d'ajustement final) franchie, la boucle stoppe
+                        automatiquement !</li>
+                    <li><strong>L'écran s'anime avec un message officiel de SUCCÈS :</strong> "Convergence Atteinte !
+                        Voici le Point d'Entrée en Terre".</li>
+                    <li>Le topo enfonce le piquet en bois, marque "ET", l'emplacement 3D d'interface entre Projet et
+                        Terrains est définitivement matérialisé sans encombre au sol, évitant l'usage de grosses
+                        machines bureau sur la montagne.</li>
+                </ul>
+                <div class="box alert">
+                    <div class="box-title">Absence de Convergence (Divergence Infinie)</div>
+                    <p>Si la colline s'avère avoir une pente géographique identique à la pente du talus (ex: 3/2 sur un
+                        relief parallèle) l'Axe de croisement ne se produira tout simplement jamais ! Si après 10
+                        sondages ou si la correction vous donne un "Éloignez-vous de 500m", n'insistez pas. Ce profil en
+                        travers est physiquement caduque. TopoCalc vous protège et ce talus ne peut rattraper
+                        mathématiquement le terrain sous l'assiette du Projet, il convient de modifier l'ingénierie
+                        (Murs de Soutènements) du point d'étude bureau.</p>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+</body>
+
+</html>
