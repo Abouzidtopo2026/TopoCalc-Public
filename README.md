@@ -6,7 +6,7 @@
   <b>Developed By ABOUZID ABDELLATIF, CSE</b>
 </p>
 
-**TopoCalc** est une application professionnelle de calcul topographique (Progressive Web App et Android) développée pour assister les géomètres, topographes et projeteurs dans la conception, le calcul et l'implantation géométrique. 
+**TopoCalc** est une application professionnelle de calcul topographique (Progressive Web App et Android) développée pour assister les géomètres, topographes et projeteurs dans la conception, le calcul et l'implantation géométrique. **Véritable alternative moderne, cette application remplace intégralement l'usage de la calculatrice programmable classique.** 
 
 Ce dépôt est destiné à la distribution publique de l'application et de ses manuels.
 
