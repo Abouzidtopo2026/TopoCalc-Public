@@ -1,7 +1,7 @@
 # 🏔️ TopoCalc - Distributeur Public
 
 <p align="center">
-  <img src="URL_A_INSERER" alt="Logo de l'entreprise" height="150"/>
+  <img src="https://raw.githubusercontent.com/Abouzidtopo2026/TopoCalc-Public/assets/logo.png" alt="Logo de l'entreprise" height="150"/>
   <br>
   <b>Developed By ABOUZID ABDELLATIF, CSE</b>
 </p>
