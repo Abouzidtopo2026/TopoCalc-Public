@@ -1,5 +1,11 @@
 # 🏔️ TopoCalc - Distributeur Public
 
+<p align="center">
+  <img src="logo.png" alt="Logo de l'entreprise" height="150"/>
+  <br>
+  <b>Developed By ABOUZID ABDELLATIF, CSE</b>
+</p>
+
 **TopoCalc** est une application professionnelle de calcul topographique (Progressive Web App et Android) développée pour assister les géomètres, topographes et projeteurs dans la conception, le calcul et l'implantation géométrique. 
 
 Ce dépôt est destiné à la distribution publique de l'application et de ses manuels.
