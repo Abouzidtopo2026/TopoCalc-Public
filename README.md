@@ -18,5 +18,16 @@ Cet outil est une application de calcul topographique (Progressive Web App et An
 3. Autorisez l'installation d'applications issues de "sources inconnues" si demandé.
 4. Lancez TopoCalc !
 
+## 🍏 Utilisation sur iPhone / iPad (iOS)
+Grâce au format Web App (PWA), TopoCalc est directement utilisable et installable sur les appareils Apple.
+
+1. Ouvrez **Safari** sur votre iPhone ou iPad.
+2. Allez sur le lien web officiel de l'application : **[https://topocalc.netlify.app/](https://topocalc.netlify.app/)**
+3. Touchez l'icône de **Partage** en bas de l'écran (le petit carré avec une flèche pointant vers le haut).
+4. Faites défiler le menu et sélectionnez **"Sur l'écran d'accueil"** (Add to Home Screen).
+5. Appuyez sur **Ajouter** en haut à droite.
+
+L'icône TopoCalc apparaîtra alors parmi vos applications et s'ouvrira en plein écran, sans la barre du navigateur !
+
 ---
 *Développé pour respecter les standards géométriques (Calculs de droites, raccordements circulaires, clothoïdes, profils en long).*
