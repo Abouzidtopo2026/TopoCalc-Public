@@ -46,7 +46,7 @@ Un ensemble de sous-logiciels utilitaires permettant le rayonnement rapide, calc
 - `donnees_exemple/` : Exemples de fichiers pour l'import / test :
   - Sauvegardes de projets `.json`
   - Matrices Excel `.xlsx`
-  - Rapports de géométrie `.csv`
+  - Fichiers d'exemples pour tester l'application `.csv`
 
 ---
 
