@@ -19,15 +19,15 @@ L'application propose des tuiles dynamiques pour accéder instantanément aux fo
 ### 🛣️ Les Axes en Plan (Détails et implantation)
 Gérez vos éléments de route horizontaux (Droites, Arcs, Clothoïdes) avec la génération du tracé graphique instantané et calcul complet d'éléments.
 <p align="center">
-  <img src="CAPTURES/Apge_Axe_En_Plan_Fin.jpg" alt="Axe en Plan" width="300"/>
-  <img src="CAPTURES/Apge_Axe_En_Plan_Edit1.jpg" alt="Axe en Plan Edit" width="300"/>
+  <img src="CAPTURES/Page_Axe_En_Plan_Fin.jpg" alt="Axe en Plan" width="300"/>
+  <img src="CAPTURES/Page_Axe_En_Plan_Edit1.jpg" alt="Axe en Plan Edit" width="300"/>
 </p>
 
 ### 📈 Les Profils en Long
 Bénéficiez d'un outil intuitif de calcul d'altimétries avec raccordements paraboliques pour évaluer vos pentes et rampes. L'interface affiche le dessin direct de votre parabole, de la corde et l'intersection des tangentes.
 <p align="center">
-  <img src="CAPTURES/Apge_Profil_En_Long_Fin.jpg" alt="Profil en Long" width="300"/>
-  <img src="CAPTURES/Apge_Profil_En_Long_Edit1.jpg" alt="Calcul Profil" width="300"/>
+  <img src="CAPTURES/Page_Profil_En_Long_Fin.jpg" alt="Profil en Long" width="300"/>
+  <img src="CAPTURES/Page_Profil_En_Long_Edit1.jpg" alt="Calcul Profil" width="300"/>
 </p>
 
 ### 📐 Outils de calcul rapides (EET, PK/Déport, Surfaces)
